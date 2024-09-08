@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 from lib.Bank import Bank
 
@@ -39,7 +39,8 @@ class BaseUser(ABC):
             self.__balance -= amount
             try:
                 Bank._decrease_total_bank_balance(amount)
-            except:
+            except Exception as e:
+                print(e)
                 return False
             return True
         else:

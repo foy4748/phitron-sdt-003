@@ -10,11 +10,14 @@ class Loan:
         if Bank.isNumberAndPositive(amount):
             self.amount = amount
 
-            user.increase_balance(amount)
-            Bank._increase_total_loan_amount(amount)
-            Bank._decrease_total_bank_balance(amount)
+            try:
+                user.increase_balance(amount)
+                Bank._increase_total_loan_amount(amount)
+                Bank._decrease_total_bank_balance(amount)
 
-            user.issue_a_loan(self)
-            Bank._append_new_loan(self)
+                user.issue_a_loan(self)
+                Bank._append_new_loan(self)
+            except Exception as e:
+                print(e)
         else:
             raise Exception("Can't issue loan using invalid amount")
