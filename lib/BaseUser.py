@@ -2,6 +2,18 @@ from abc import ABC
 
 from lib.Bank import Bank
 
+# Decorators
+
+
+def check_is_deleted_user(func):
+    def wrapper(self, *args, **kwargs):
+        if self._isDeleted is False:
+            return func(self, *args, **kwargs)
+        else:
+            raise Exception("User is Deleted")
+
+    return wrapper
+
 
 class BaseUser(ABC):
     _account_types = ("SAVINGS", "CURRENT")
@@ -16,18 +28,29 @@ class BaseUser(ABC):
         self.__loans = []
         self.__transactions = []
         self.__id = id
-        self.__isDeleted = False
+        self._isDeleted = False
 
+    @check_is_deleted_user
     def get_id(self):
         return self.__id
 
+    @check_is_deleted_user
+    def toggle_delete_status(self):
+        if self._isDeleted is False:
+            self._isDeleted = True
+        else:
+            self._isDeleted = False
+
+    @check_is_deleted_user
     def __repr__(self) -> str:
         return f"{self.__name} || {self.__email} || {self.__address}"
 
     # Balance releated
+    @check_is_deleted_user
     def check_balance(self):
         print(self.__balance)
 
+    @check_is_deleted_user
     def increase_balance(self, amount):
         if Bank.isNumberAndPositive(amount):
             self.__balance += amount
@@ -35,6 +58,7 @@ class BaseUser(ABC):
         else:
             raise Exception("Enter valid amount for balance increase")
 
+    @check_is_deleted_user
     def withdraw_balance(self, amount):
         if Bank.isNumberAndPositive(amount) and self.__balance >= amount:
             try:
@@ -49,9 +73,12 @@ class BaseUser(ABC):
             # return False
 
     # Loan related
+
+    @check_is_deleted_user
     def check_loan_amount(self):
         print(self.__loan_amount)
 
+    @check_is_deleted_user
     def issue_a_loan(self, loan):
         if len(self.__loans) < 2:
             self.__loans.append(loan)
@@ -59,14 +86,18 @@ class BaseUser(ABC):
         else:
             raise Exception("Already have issued 2 loans")
 
+    @check_is_deleted_user
     def change_account_type(self, account_type_idx):
         self.__account_type = self._account_types[account_type_idx]
         return self.__account_type
 
     # Transaction related
+
+    @check_is_deleted_user
     def perform_transaction(self, transaction):
         self.__transactions.append(transaction)
 
+    @check_is_deleted_user
     def check_transaction_history(self):
         print("Transction history")
         print("===================")

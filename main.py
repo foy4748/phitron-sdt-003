@@ -36,12 +36,18 @@ user1.check_balance()
 print("Bank Capital")
 Bank.check_bank_balance()
 
+print("Deleting User account")
+user1.toggle_delete_status()
+
 try:
     Transaction(user1, user2, 4000)
 except Exception as e:
     print(e)
 print("Balance")
-user1.check_balance()
-user2.check_balance()
+try:
+    user1.check_balance()
+    user2.check_balance()
+except Exception as e:
+    print(e)
 
 Bank.check_all_transaction_history()

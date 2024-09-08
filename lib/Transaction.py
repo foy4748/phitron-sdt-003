@@ -12,16 +12,19 @@ class Transaction:
         if Bank.isNumberAndPositive(amount):
             isWithDrawOK = from_user.withdraw_balance(amount)
             if isWithDrawOK is True:
-                to_user.increase_balance(amount)
-                self.from_user = from_user
-                self.to_user = to_user
-                self.amount = amount
-                self.time = datetime.now()
+                try:
+                    to_user.increase_balance(amount)
+                    self.from_user = from_user
+                    self.to_user = to_user
+                    self.amount = amount
+                    self.time = datetime.now()
 
-                # Recording Transactions
-                to_user.perform_transaction(self)
-                from_user.perform_transaction(self)
-                Bank.record_transaction(self)
+                    # Recording Transactions
+                    to_user.perform_transaction(self)
+                    from_user.perform_transaction(self)
+                    Bank.record_transaction(self)
+                except Exception as e:
+                    print(e)
             else:
                 # print("Transaction Failed due to Insufficent balance")
                 # self.__del__("Transaction Failed due to Insufficent balance")
