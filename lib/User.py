@@ -6,5 +6,9 @@ class User(BaseUser):
 
     def __init__(self, name, email, address, account_type_idx) -> None:
         super().__init__(name, email, address, BaseUser.account_types[account_type_idx])
-        self.users.append(self)
         self.loans = []
+        self.id = len(self.users) + 1
+        self.users.append(self)
+
+    def __repr__(self) -> str:
+        return f"{self.id} | {super().__repr__()}"
