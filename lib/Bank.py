@@ -4,15 +4,17 @@ from abc import ABC
 class Bank(ABC):
     __total_bank_balance = 0
     __total_loan_amount = 0
+    __total_issued_loans = dict()
     __isLoanFeatureOn = True
 
+    # Balance releated
     @classmethod
     def check_bank_balance(cls):
         print(cls.__total_bank_balance)
 
     @classmethod
     def _increase_total_bank_balance(cls, amount):
-        if Bank.isNumberAndPositive(amount) is True:
+        if cls.isNumberAndPositive(amount) is True:
             cls.__total_bank_balance += amount
         else:
             print("Enter valid number. Balance is Unchanged")
@@ -20,15 +22,25 @@ class Bank(ABC):
 
     @classmethod
     def _decrease_total_bank_balance(cls, amount):
-        if Bank.isNumberAndPositive(amount) is True:
+        if cls.isNumberAndPositive(amount) is True:
             cls.__total_bank_balance -= amount
         else:
             print("Enter valid number. Balance is Unchanged")
         return cls.__total_bank_balance
 
+    # Loan related
+    @classmethod
+    def check_loan_amount(cls):
+        print(cls.__total_loan_amount)
+
+    @classmethod
+    def check_issued_loans(cls):
+        for _, k in enumerate(cls.__total_issued_loans):
+            print(k, cls.__total_issued_loans[k])
+
     @classmethod
     def _increase_total_loan_amount(cls, amount):
-        if Bank.isNumberAndPositive(amount) is True:
+        if cls.isNumberAndPositive(amount) is True:
             cls.__total_loan_amount += amount
         else:
             print("Enter valid number. Loan Amount is Unchanged")
@@ -36,7 +48,7 @@ class Bank(ABC):
 
     @classmethod
     def _decrease_total_loan_amount(cls, amount):
-        if Bank.isNumberAndPositive(amount) is True:
+        if cls.isNumberAndPositive(amount) is True:
             cls.__total_loan_amount -= amount
         else:
             print("Enter valid number. Loan Amount is Unchanged")
@@ -49,6 +61,12 @@ class Bank(ABC):
         else:
             cls.isLoanFeatureOn = True
         return cls.__isLoanFeatureOn
+
+    @classmethod
+    def _append_new_loan(cls, loan):
+        temp = cls.__total_issued_loans.get(loan.user.get_id(), [])
+        temp.append(loan)
+        cls.__total_issued_loans[loan.user.get_id()] = temp
 
     @staticmethod
     def isNumberAndPositive(num):
