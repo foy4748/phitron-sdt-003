@@ -11,25 +11,35 @@ admin2 = Admin("Faisal", "faisal.rahman.4748.ph.2@gmail.com", "Rangpur, Banglade
 user1 = User("Faisal", "faisaljfcl@gmail.com", "Rangpur, Bangladesh", 1)
 user2 = User("Faisal", "faisaljfcl02@gmail.com", "Rangpur, Bangladesh", 0)
 
-user1.increase_balance(5000)
-user2.increase_balance(2000)
-print("Before loan")
+user1.increase_balance(4000)
+print("Balance")
 user1.check_balance()
 
-Loan(user1, 2000)
-Loan(user1, 3000)
+try:
+    user1.increase_balance("4000")
+except Exception as e:
+    print(e)
 
-Loan(user2, 5000)
-Loan(user2, 12000)
+print("Bank Capital")
+Bank.check_bank_balance()
 
-print("Performing Transaction")
-print("User1 Balance")
+try:
+    Loan(user1, 1000)
+    Loan(user1, 2000)
+    Loan(user1, 1000)
+except Exception as e:
+    print(e)
+
+print("Balance")
 user1.check_balance()
-print("User2 Balance")
-user2.check_balance()
-Transaction(user1, user2, 10001)
 
-print("User1 Balance")
+print("Bank Capital")
+Bank.check_bank_balance()
+
+try:
+    Transaction(user1, user2, 7000)
+except Exception as e:
+    print(e)
+print("Balance")
 user1.check_balance()
-print("User2 Balance")
 user2.check_balance()

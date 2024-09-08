@@ -11,11 +11,10 @@ class Loan:
             self.amount = amount
 
             try:
+                user.issue_a_loan(self)
                 user.increase_balance(amount)
                 Bank._increase_total_loan_amount(amount)
                 Bank._decrease_total_bank_balance(amount)
-
-                user.issue_a_loan(self)
                 Bank._append_new_loan(self)
             except Exception as e:
                 print(e)

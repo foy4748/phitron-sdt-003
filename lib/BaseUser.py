@@ -36,9 +36,9 @@ class BaseUser(ABC):
 
     def withdraw_balance(self, amount):
         if Bank.isNumberAndPositive(amount) and self.__balance >= amount:
-            self.__balance -= amount
             try:
                 Bank._decrease_total_bank_balance(amount)
+                self.__balance -= amount
             except Exception as e:
                 print(e)
                 return False
