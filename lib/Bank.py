@@ -78,6 +78,16 @@ class Bank(ABC):
     def record_transaction(cls, transaction):
         cls.__total_transaction_history.append(transaction)
 
+    @classmethod
+    def check_all_transaction_history(cls):
+        print("Transction history")
+        print("===================")
+        for transaction in cls.__total_transaction_history:
+            print("-----------------")
+            print(transaction)
+            print("-----------------")
+        print("===================")
+
     # Static / Utility Functions
     @staticmethod
     def isNumberAndPositive(num):

@@ -37,9 +37,11 @@ print("Bank Capital")
 Bank.check_bank_balance()
 
 try:
-    Transaction(user1, user2, 7000)
+    Transaction(user1, user2, 4000)
 except Exception as e:
     print(e)
 print("Balance")
 user1.check_balance()
 user2.check_balance()
+
+Bank.check_all_transaction_history()

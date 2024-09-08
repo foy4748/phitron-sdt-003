@@ -15,4 +15,4 @@ class User(BaseUser):
 
     def __repr__(self) -> str:
         Bank._increase_total_loan_amount(50)
-        return f"{self.__id} | {super().__repr__()}"
+        return f"{self.get_id()} | {super().__repr__()}"

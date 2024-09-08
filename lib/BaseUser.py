@@ -16,6 +16,7 @@ class BaseUser(ABC):
         self.__loans = []
         self.__transactions = []
         self.__id = id
+        self.__isDeleted = False
 
     def get_id(self):
         return self.__id
@@ -65,3 +66,10 @@ class BaseUser(ABC):
     # Transaction related
     def perform_transaction(self, transaction):
         self.__transactions.append(transaction)
+
+    def check_transaction_history(self):
+        print("Transction history")
+        print("===================")
+        for transaction in self.__transactions:
+            print(transaction)
+        print("===================")

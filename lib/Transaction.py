@@ -17,9 +17,17 @@ class Transaction:
                 self.to_user = to_user
                 self.amount = amount
                 self.time = datetime.now()
+
+                # Recording Transactions
+                to_user.perform_transaction(self)
+                from_user.perform_transaction(self)
+                Bank.record_transaction(self)
             else:
                 # print("Transaction Failed due to Insufficent balance")
                 # self.__del__("Transaction Failed due to Insufficent balance")
                 raise Exception("Transaction Failed due to Insufficent balance")
         else:
             raise Exception("Transaction Failed due to invalid amount input")
+
+    def __repr__(self) -> str:
+        return f"From: {self.from_user}\nTo: {self.to_user}\nAmount: {self.amount} BDT\n Time: {self.time.isoformat()}"
