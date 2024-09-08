@@ -6,6 +6,7 @@ class Bank(ABC):
     __total_loan_amount = 0
     __total_issued_loans = dict()
     __isLoanFeatureOn = True
+    __total_transaction_history = []
 
     # Balance releated
     @classmethod
@@ -68,6 +69,12 @@ class Bank(ABC):
         temp.append(loan)
         cls.__total_issued_loans[loan.user.get_id()] = temp
 
+    # Transaction related
+    @classmethod
+    def record_transaction(cls, transaction):
+        cls.__total_transaction_history.append(transaction)
+
+    # Static / Utility Functions
     @staticmethod
     def isNumberAndPositive(num):
         return isinstance(num, (int, float)) and num > 0

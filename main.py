@@ -2,6 +2,7 @@
 from lib.Admin import Admin
 from lib.Bank import Bank
 from lib.Loan import Loan
+from lib.Transaction import Transaction
 from lib.User import User
 
 admin1 = Admin("Faisal", "faisal.rahman.4748.ph@gmail.com", "Rangpur, Bangladesh", 0)
@@ -21,8 +22,14 @@ Loan(user1, 3000)
 Loan(user2, 5000)
 Loan(user2, 12000)
 
-print("After loan")
+print("Performing Transaction")
+print("User1 Balance")
 user1.check_balance()
-user1.check_loan_amount()
-Bank.check_loan_amount()
-Bank.check_issued_loans()
+print("User2 Balance")
+user2.check_balance()
+Transaction(user1, user2, 10001)
+
+print("User1 Balance")
+user1.check_balance()
+print("User2 Balance")
+user2.check_balance()

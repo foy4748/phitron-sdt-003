@@ -14,6 +14,7 @@ class BaseUser(ABC):
         self.__balance = 0
         self.__loan_amount = 0
         self.__loans = []
+        self.__transactions = []
         self.__id = id
 
     def get_id(self):
@@ -30,11 +31,17 @@ class BaseUser(ABC):
         if Bank.isNumberAndPositive(amount):
             self.__balance += amount
             Bank._increase_total_bank_balance(amount)
+        else:
+            print("Enter valid amount for balance increase")
 
     def withdraw_balance(self, amount):
-        if Bank.isNumberAndPositive(amount):
+        if Bank.isNumberAndPositive(amount) and self.__balance - amount >= 0:
             self.__balance -= amount
             Bank._decrease_total_bank_balance(amount)
+            return True
+        else:
+            print("Withdrawal amount exceeded")
+            return False
 
     # Loan related
     def check_loan_amount(self):
@@ -47,3 +54,7 @@ class BaseUser(ABC):
     def change_account_type(self, account_type_idx):
         self.__account_type = self._account_types[account_type_idx]
         return self.__account_type
+
+    # Transaction related
+    def perform_transaction(self, transaction):
+        self.__transactions.append(transaction)
