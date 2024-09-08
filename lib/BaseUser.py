@@ -32,7 +32,7 @@ class BaseUser(ABC):
             self.__balance += amount
             Bank._increase_total_bank_balance(amount)
         else:
-            print("Enter valid amount for balance increase")
+            raise Exception("Enter valid amount for balance increase")
 
     def withdraw_balance(self, amount):
         if Bank.isNumberAndPositive(amount) and self.__balance >= amount:
@@ -44,16 +44,19 @@ class BaseUser(ABC):
                 return False
             return True
         else:
-            print("Withdrawal amount exceeded")
-            return False
+            raise Exception("Withdrawal amount exceeded")
+            # return False
 
     # Loan related
     def check_loan_amount(self):
         print(self.__loan_amount)
 
     def issue_a_loan(self, loan):
-        self.__loans.append(loan)
-        self.__loan_amount += loan.amount
+        if len(self.__loans) < 2:
+            self.__loans.append(loan)
+            self.__loan_amount += loan.amount
+        else:
+            raise Exception("Already have issued 2 loans")
 
     def change_account_type(self, account_type_idx):
         self.__account_type = self._account_types[account_type_idx]

@@ -27,7 +27,7 @@ class Bank(ABC):
             if cls.__total_bank_balance >= amount:
                 cls.__total_bank_balance -= amount
             else:
-                raise Exception("Insufficent capital")
+                raise Exception("bank is bankrupt")
         else:
             # print("Enter valid number. Balance is Unchanged")
             raise Exception("Enter valid number. Balance is Unchanged")
