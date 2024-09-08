@@ -35,9 +35,12 @@ class BaseUser(ABC):
             print("Enter valid amount for balance increase")
 
     def withdraw_balance(self, amount):
-        if Bank.isNumberAndPositive(amount) and self.__balance - amount >= 0:
+        if Bank.isNumberAndPositive(amount) and self.__balance >= amount:
             self.__balance -= amount
-            Bank._decrease_total_bank_balance(amount)
+            try:
+                Bank._decrease_total_bank_balance(amount)
+            except:
+                return False
             return True
         else:
             print("Withdrawal amount exceeded")

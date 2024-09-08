@@ -24,9 +24,13 @@ class Bank(ABC):
     @classmethod
     def _decrease_total_bank_balance(cls, amount):
         if cls.isNumberAndPositive(amount) is True:
-            cls.__total_bank_balance -= amount
+            if cls.__total_bank_balance >= amount:
+                cls.__total_bank_balance -= amount
+            else:
+                raise Exception("Insufficent capital")
         else:
-            print("Enter valid number. Balance is Unchanged")
+            # print("Enter valid number. Balance is Unchanged")
+            raise Exception("Enter valid number. Balance is Unchanged")
         return cls.__total_bank_balance
 
     # Loan related
@@ -48,7 +52,7 @@ class Bank(ABC):
         return cls.__total_loan_amount
 
     @classmethod
-    def _decrease_total_loan_amount(cls, amount):
+    def _decrease_total_loan_amount(cls, amount):  # Due to loan resolve
         if cls.isNumberAndPositive(amount) is True:
             cls.__total_loan_amount -= amount
         else:
