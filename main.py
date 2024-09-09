@@ -23,6 +23,9 @@ except Exception as e:
 print("Bank Capital")
 Bank.check_bank_balance()
 
+# print("Turning OFF Loan")
+# admin1.toggle_loan_feature()
+
 try:
     Loan(user1, 1000)
     Loan(user1, 2000)
@@ -36,8 +39,9 @@ user1.check_balance()
 print("Bank Capital")
 Bank.check_bank_balance()
 
-print("Deleting User account")
-user1.toggle_delete_status()
+# print("Deleting User account")
+# user1.toggle_delete_status()
+
 
 try:
     Transaction(user1, user2, 4000)
