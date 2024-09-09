@@ -4,6 +4,7 @@ from lib.Admin import Admin
 def AdminMenu(admin_instance: Admin):
     option = -1
     keepRunning = True
+    rememberLastSession = False
 
     while keepRunning:
         print("\n\nAdmin Menu")
@@ -24,13 +25,36 @@ def AdminMenu(admin_instance: Admin):
             case 1:
                 pass
             case 2:
-                pass
+                print("Select User Type")
+                print("1. Normal User")
+                print("2. Admin User")
+                user_type = int(input("Choose an action: "))
+                print("\n")
+                if user_type == 1:
+                    admin_instance.view_user_list()
+                    user_id = int(input("Enter User number: "))
+                    admin_instance.delete_a_user(user_id)
+                if user_type == 2:
+                    admin_instance.view_admin_list()
+                    user_id = int(input("Enter User number: "))
+                    Admin._delete_an_admin(user_id)
+                else:
+                    print("Provide a valid option")
             case 3:
-                pass
+                print("Select User Type")
+                print("1. Normal User")
+                print("2. Admin User")
+                user_type = int(input("Choose an action: "))
+                if user_type == 1:
+                    admin_instance.view_user_list()
+                if user_type == 2:
+                    admin_instance.view_admin_list()
+                else:
+                    print("Provide a valid option")
             case 4:
-                pass
+                admin_instance.check_total_bank_balance()
             case 5:
-                pass
+                admin_instance.check_total_loan_amount()
             case 6:
                 admin_instance.toggle_loan_feature()
             case 7:

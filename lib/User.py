@@ -17,7 +17,6 @@ class User(BaseUser):
         idx = num - 1
         to_be_deleted = cls.__users[idx]
         to_be_deleted.toggle_delete_status()
-        print(to_be_deleted, "has been deleted Successfully")
 
     @classmethod
     def view_user_list(cls):

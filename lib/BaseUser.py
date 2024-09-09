@@ -38,13 +38,18 @@ class BaseUser(ABC):
     # Allowing Reactivate the user
     def toggle_delete_status(self):
         if self._isDeleted is False:
+            print("Deleting User account")
             self._isDeleted = True
         else:
+            print("Re-activating User account")
             self._isDeleted = False
 
     # @check_is_deleted_user
     def __repr__(self) -> str:
-        return f"{self.__name} || {self.__email} || {self.__address}"
+        if self._isDeleted is False:
+            return f"{self.__name} || {self.__email}"
+        else:
+            return f"(deactivated) || {self.__name} || {self.__email}"
 
     # Balance releated
     @check_is_deleted_user

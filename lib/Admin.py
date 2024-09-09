@@ -25,7 +25,6 @@ class Admin(BaseUser):
         idx = num - 1
         to_be_deleted = cls.__admins[idx]
         to_be_deleted.toggle_delete_status()
-        print(to_be_deleted, ", an admin, has been deleted Successfully")
 
     # Task 3 - Can see all user accounts list
     def view_user_list(self):
