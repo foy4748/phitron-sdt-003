@@ -18,7 +18,7 @@ def check_is_deleted_user(func):
 class BaseUser(ABC):
     _account_types = ("SAVINGS", "CURRENT")
 
-    def __init__(self, name, email, address, account_type, id):
+    def __init__(self, name, email, address, account_type, id, role="USER"):
         self.__name = name
         self.__email = email
         self.__address = address
@@ -29,10 +29,15 @@ class BaseUser(ABC):
         self.__transactions = []
         self.__id = id
         self._isDeleted = False
+        self._role = role
 
     # @check_is_deleted_user
     def get_id(self):
         return self.__id
+
+    @check_is_deleted_user
+    def get_role(self):
+        return self._role
 
     # @check_is_deleted_user
     # Allowing Reactivate the user
@@ -47,7 +52,7 @@ class BaseUser(ABC):
     # @check_is_deleted_user
     def __repr__(self) -> str:
         if self._isDeleted is False:
-            return f"{self.__name} || {self.__email}"
+            return f"{self.__name} || {self.__email} || {self.__address}"
         else:
             return f"(deactivated) || {self.__name} || {self.__email}"
 

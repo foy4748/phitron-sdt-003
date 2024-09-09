@@ -81,9 +81,10 @@ class Bank(ABC):
     @classmethod
     @check_is_loan_feature_turned_off
     def _append_new_loan(cls, loan):
-        temp = cls.__total_issued_loans.get(loan.user.get_id(), [])
+        user_key = str(loan.user.get_id()) + "_" + loan.user.get_role()
+        temp = cls.__total_issued_loans.get(user_key, [])
         temp.append(loan)
-        cls.__total_issued_loans[loan.user.get_id()] = temp
+        cls.__total_issued_loans[user_key] = temp
 
     @classmethod
     def _toggle_loan_feature(cls):

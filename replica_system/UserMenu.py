@@ -1,3 +1,4 @@
+from lib.Loan import Loan
 from lib.User import User
 
 
@@ -26,7 +27,7 @@ def UserMenu(user_instance: User):
             case 1:
                 pass
             case 2:
-                amount = int(input("Enter amount for deposit: "))
+                amount = float(input("Enter amount for deposit: "))
                 try:
                     user_instance.increase_balance(amount)
                 except Exception as e:
@@ -36,7 +37,16 @@ def UserMenu(user_instance: User):
             case 4:
                 user_instance.check_transaction_history()
             case 5:
-                pass
+                amount = -1
+                try:
+                    amount = float(input("Enter amount"))
+                except:
+                    print("Provide valid amount")
+                try:
+                    print("Issuing a Loan")
+                    Loan(user_instance, amount)
+                except Exception as e:
+                    print(e)
             case 7:
                 print("Exiting User Menu")
                 keepRunning = False
