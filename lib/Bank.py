@@ -88,8 +88,10 @@ class Bank(ABC):
     @classmethod
     def _toggle_loan_feature(cls):
         if cls._isLoanFeatureOn is True:
+            print("Toggling Loan System OFF")
             cls._isLoanFeatureOn = False
         else:
+            print("Toggling Loan System ON")
             cls.isLoanFeatureOn = True
         return cls._isLoanFeatureOn
 
