@@ -23,5 +23,16 @@ class User(BaseUser):
         for user in cls.__users:
             print(user)
 
+    @classmethod
+    def get_user_instance(cls, num):
+        idx = num - 1
+        user_instance = None
+        try:
+            user_instance = cls.__users[idx]
+            return user_instance
+        except:
+            print(f"User not found for id/account_no {num}")
+            return user_instance
+
     def __repr__(self) -> str:
         return f"{self.get_id()} | {super().__repr__()}"

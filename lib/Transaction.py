@@ -11,16 +11,16 @@ class Transaction:
     ) -> None:
         if Bank.isNumberAndPositive(amount):
 
+            isBankTransferable = Bank.check_transfer_limit(amount)
+
+            if isBankTransferable is False:
+                raise Exception("Transaction Failed due to Insufficent CAPITAL")
+
             isWithDrawOK = None
             try:
                 isWithDrawOK = from_user.withdraw_balance(amount)
             except Exception as e:
                 print(e)
-
-            isBankTransferable = Bank.check_transfer_limit(amount)
-
-            if isBankTransferable is False:
-                raise Exception("Transaction Failed due to Insufficent CAPITAL")
 
             if isWithDrawOK is True:
                 try:
@@ -30,6 +30,9 @@ class Transaction:
                     self.amount = amount
                     self.time = datetime.now()
 
+                    print(
+                        f"Sending...\nFrom: {self.from_user}\nTo: {self.to_user}\nAmount:{self.amount}"
+                    )
                     # Recording Transactions
                     to_user.perform_transaction(self)
                     from_user.perform_transaction(self)

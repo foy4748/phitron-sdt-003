@@ -16,6 +16,17 @@ class Admin(BaseUser):
     def __repr__(self) -> str:
         return f"{self.get_id()} | {super().__repr__()}"
 
+    @classmethod
+    def get_admin_instance(cls, num):
+        idx = num - 1
+        admin_instance = None
+        try:
+            admin_instance = cls.__admins[idx]
+            return admin_instance
+        except:
+            print(f"User not found for id/account_no {num}")
+            return admin_instance
+
     # Task 2 - Can delete any user account
     def delete_a_user(self, num):
         User._delete_a_user(num)
