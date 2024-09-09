@@ -61,7 +61,11 @@ class BaseUser(ABC):
 
     @check_is_deleted_user
     def withdraw_balance(self, amount):
-        if Bank.isNumberAndPositive(amount) and self.__balance >= amount:
+        if self.__balance < amount:
+            raise Exception("Withdrawal amount exceeded")
+            # return False
+
+        if Bank.isNumberAndPositive(amount):
             try:
                 Bank._decrease_total_bank_balance(amount)
                 self.__balance -= amount
@@ -70,8 +74,7 @@ class BaseUser(ABC):
                 return False
             return True
         else:
-            raise Exception("Withdrawal amount exceeded")
-            # return False
+            raise Exception("Provide valid amount")
 
     # Loan related
 

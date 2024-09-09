@@ -10,7 +10,18 @@ class Transaction:
         self, from_user: Union[User, Admin], to_user: Union[User, Admin], amount
     ) -> None:
         if Bank.isNumberAndPositive(amount):
-            isWithDrawOK = from_user.withdraw_balance(amount)
+
+            isWithDrawOK = None
+            try:
+                isWithDrawOK = from_user.withdraw_balance(amount)
+            except Exception as e:
+                print(e)
+
+            isBankTransferable = Bank.check_transfer_limit(amount)
+
+            if isBankTransferable is False:
+                raise Exception("Transaction Failed due to Insufficent CAPITAL")
+
             if isWithDrawOK is True:
                 try:
                     to_user.increase_balance(amount)

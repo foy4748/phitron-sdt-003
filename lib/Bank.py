@@ -24,6 +24,13 @@ class Bank(ABC):
         print(cls.__total_bank_balance)
 
     @classmethod
+    def check_transfer_limit(cls, amount):
+        if cls.isNumberAndPositive(amount):
+            return cls.__total_bank_balance >= amount
+        else:
+            raise Exception("Given amount is invalid type")
+
+    @classmethod
     def _increase_total_bank_balance(cls, amount):
         if cls.isNumberAndPositive(amount) is True:
             cls.__total_bank_balance += amount
