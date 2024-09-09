@@ -30,18 +30,19 @@ class BaseUser(ABC):
         self.__id = id
         self._isDeleted = False
 
-    @check_is_deleted_user
+    # @check_is_deleted_user
     def get_id(self):
         return self.__id
 
-    @check_is_deleted_user
+    # @check_is_deleted_user
+    # Allowing Reactivate the user
     def toggle_delete_status(self):
         if self._isDeleted is False:
             self._isDeleted = True
         else:
             self._isDeleted = False
 
-    @check_is_deleted_user
+    # @check_is_deleted_user
     def __repr__(self) -> str:
         return f"{self.__name} || {self.__email} || {self.__address}"
 

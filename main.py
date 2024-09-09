@@ -16,5 +16,17 @@ user1.increase_balance(4000)
 print("Balance")
 user1.check_balance()
 
-admin1.check_total_bank_balance()
-admin1.check_total_loan_amount()
+admin1.delete_a_user(1)
+admin1._delete_an_admin(2)
+
+
+try:
+    print("Balance")
+    user1.check_balance()
+except Exception as e:
+    print(e)
+try:
+    print("Balance")
+    admin2.check_balance()
+except Exception as e:
+    print(e)

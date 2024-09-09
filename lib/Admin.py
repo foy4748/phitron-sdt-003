@@ -16,10 +16,20 @@ class Admin(BaseUser):
     def __repr__(self) -> str:
         return f"{self.get_id()} | {super().__repr__()}"
 
+    # Task 2 - Can delete any user account
+    def delete_a_user(self, num):
+        User._delete_a_user(num)
+
+    @classmethod
+    def _delete_an_admin(cls, num):
+        idx = num - 1
+        to_be_deleted = cls.__admins[idx]
+        to_be_deleted.toggle_delete_status()
+        print(to_be_deleted, ", an admin, has been deleted Successfully")
+
     # Task 3 - Can see all user accounts list
     def view_user_list(self):
-        for user in User._users:
-            print(user)
+        User.view_user_list()
 
     def view_admin_list(self):
         for user in self.__admins:
