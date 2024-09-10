@@ -6,10 +6,12 @@ from lib.User import User
 class Admin(BaseUser):
     __admins = []
 
-    def __init__(self, name, email, address, account_type_idx) -> None:
+    def __init__(
+        self, name: str, email: str, address: str, account_type_idx: int
+    ) -> None:
         id = len(self.__admins) + 1
         super().__init__(
-            name, email, address, BaseUser._account_types[account_type_idx], id
+            name, email, address, BaseUser._account_types[account_type_idx], id, "ADMIN"
         )
         self.__admins.append(self)
 

@@ -1,5 +1,6 @@
 from lib.Admin import Admin
 from lib.Bank import Bank
+from lib.BaseUser import BaseUser
 from lib.Loan import Loan
 from lib.Transaction import Transaction
 from lib.User import User
@@ -9,7 +10,7 @@ def UserMenu(user_instance: User):
 
     option = -1
     keepRunning = True
-    rememberLastSession = False
+    # rememberLastSession = False
 
     while keepRunning:
         print("\nUser Menu")
@@ -28,7 +29,27 @@ def UserMenu(user_instance: User):
 
         match option:
             case 1:
-                pass
+                print("Select Account Type")
+                print("-------------------")
+                account_type_num = -1
+                for account_type in BaseUser._account_types:
+                    print(account_type)
+                try:
+                    account_type_num = int(input("Enter Type no. : "))
+                except:
+                    print("Enter valid no.")
+                    continue
+
+                name = input("Enter name: ")
+                email = input("Enter email: ")
+                address = input("Enter address: ")
+
+                try:
+                    User(name, email, address, account_type_num - 1)
+                    print("Successfully created User account")
+                except:
+                    print("User account creation FAILED")
+                    continue
             case 2:
                 try:
                     amount = float(input("Enter amount for deposit: "))

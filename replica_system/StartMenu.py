@@ -7,7 +7,7 @@ from replica_system.UserMenu import UserMenu
 def StartMenu():
     option = -1
     keepRunning = True
-    rememberLastSession = False
+    # rememberLastSession = False
 
     while keepRunning:
         print("\n\nStart Menu")

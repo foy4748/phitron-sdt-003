@@ -1,10 +1,11 @@
 from lib.Admin import Admin
+from lib.BaseUser import BaseUser
 
 
 def AdminMenu(admin_instance: Admin):
     option = -1
     keepRunning = True
-    rememberLastSession = False
+    # rememberLastSession = False
 
     while keepRunning:
         print("\n\nAdmin Menu")
@@ -23,7 +24,27 @@ def AdminMenu(admin_instance: Admin):
 
         match option:
             case 1:
-                pass
+                print("Select Account Type")
+                print("-------------------")
+                account_type_num = -1
+                for account_type in BaseUser._account_types:
+                    print(account_type)
+                try:
+                    account_type_num = int(input("Enter Type no. : "))
+                except:
+                    print("Enter valid no.")
+                    continue
+
+                name = input("Enter name: ")
+                email = input("Enter email: ")
+                address = input("Enter address: ")
+
+                try:
+                    Admin(name, email, address, account_type_num - 1)
+                    print("Successfully created Admin account")
+                except:
+                    print("Admin account creation FAILED")
+                    continue
             case 2:
                 print("Select User Type")
                 print("1. Normal User")
