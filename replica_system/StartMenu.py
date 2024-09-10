@@ -24,7 +24,7 @@ def StartMenu():
             case 1:
                 user_num = -1
                 try:
-                    user_num = int(input("Enter receiver id/account_no: "))
+                    user_num = int(input("Enter id/account_no: "))
                 except:
                     print("Enter numeric value only")
                     continue

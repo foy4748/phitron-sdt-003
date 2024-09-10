@@ -115,6 +115,8 @@ class BaseUser(ABC):
     def check_transaction_history(self):
         print("Transction history")
         print("===================")
-        for transaction in self.__transactions:
+        for transaction in reversed(self.__transactions):
+            print("\n-----------------")
             print(transaction)
+            print("-----------------\n")
         print("===================")

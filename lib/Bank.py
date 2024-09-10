@@ -105,10 +105,10 @@ class Bank(ABC):
     def check_all_transaction_history(cls):
         print("Transction history")
         print("===================")
-        for transaction in cls.__total_transaction_history:
-            print("-----------------")
+        for transaction in reversed(cls.__total_transaction_history):
+            print("\n-----------------")
             print(transaction)
-            print("-----------------")
+            print("-----------------\n")
         print("===================")
 
     # Static / Utility Functions
