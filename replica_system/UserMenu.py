@@ -30,9 +30,10 @@ def UserMenu(user_instance: User):
             case 1:
                 pass
             case 2:
-                amount = float(input("Enter amount for deposit: "))
                 try:
+                    amount = float(input("Enter amount for deposit: "))
                     user_instance.increase_balance(amount)
+                    Transaction(user_instance, user_instance, amount, self_deposit=True)
                 except Exception as e:
                     print(e)
             case 3:
