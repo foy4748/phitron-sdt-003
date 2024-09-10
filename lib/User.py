@@ -35,4 +35,4 @@ class User(BaseUser):
             return user_instance
 
     def __repr__(self) -> str:
-        return f"{self.get_id()} | {super().__repr__()}"
+        return f"{self.get_id()}. {super().__repr__()}"

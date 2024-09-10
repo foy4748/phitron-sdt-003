@@ -16,7 +16,7 @@ class Admin(BaseUser):
         self.__admins.append(self)
 
     def __repr__(self) -> str:
-        return f"{self.get_id()} | {super().__repr__()}"
+        return f"{self.get_id()}. {super().__repr__()}"
 
     @classmethod
     def get_admin_instance(cls, num):

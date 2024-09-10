@@ -32,8 +32,8 @@ def UserMenu(user_instance: User):
                 print("Select Account Type")
                 print("-------------------")
                 account_type_num = -1
-                for account_type in BaseUser._account_types:
-                    print(account_type)
+                for idx, account_type in enumerate(BaseUser._account_types):
+                    print(str(idx + 1) + ".", account_type)
                 try:
                     account_type_num = int(input("Enter Type no. : "))
                 except:
