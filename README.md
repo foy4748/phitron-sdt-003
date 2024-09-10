@@ -1,11 +1,11 @@
 # Index
 
-- Instructions
-    - Course Credentials
-    - Necessary Links
-    - Running the project
-	- For using pipenv
-	- How it works **[`Important`]**
+- [Instructions](#instructions)
+    - [Course Credentials](#course-credentials)
+    - [Necessary Links](#necessary-links)  
+    - [Running the project](#running-the-project)   
+	- [For using pipenv](#for-using-pipenv)
+	- [ **How it works** **[`Important`]**](#how-it-works)
 
 # Instructions
 
